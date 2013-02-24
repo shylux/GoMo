@@ -13,7 +13,7 @@ function updateGameState(data) {
 			var datafield = data.board[y][x];
       var domfield = $('#board').find('[y="'+y+'"]').find('[x="'+x+'"]');
       domfield.addClass('color_' + datafield.color);
-      domfield.html('player: '+datafield.player+'<br/>level: '+datafield.level);
+      domfield.html('player: '+datafield.player_id+'<br/>level: '+datafield.level);
     }
   }
   //TODO
