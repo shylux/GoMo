@@ -1,5 +1,7 @@
 if (typeof GoMo !== 'object') GoMo = {};
 (function() {
+  GoMo.last_data = undefined;
+  GoMo.player_id = undefined;
   GoMo.url = '/game';
   GoMo.connect = function(onsuccess, onerror) {
     GoMo.on_success = onsuccess;
@@ -9,7 +11,7 @@ if (typeof GoMo !== 'object') GoMo = {};
   GoMo.abort = function() {
     clearInterval(interval);
   }
-  GoMo.request = function(senddata) {
+  GoMo.request = function(senddata, onsuccess) {
     $.ajax({
       url: GoMo.url,
       data: JSON.stringify(senddata),
@@ -19,7 +21,12 @@ if (typeof GoMo !== 'object') GoMo = {};
       success: function(data, textStatus, jqXHR) {
         if (!data.result) {GoMo.on_error(textStatus); return;}
         if (data.result != 'success') {GoMo.on_error(data.result); return;}
-        GoMo.on_success(data);
+        GoMo.last_data = data;
+        if (typeof onsuccess !== 'undefined') {
+          onsuccess(data)
+        } else {
+          GoMo.on_success(data);
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         GoMo.on_error(textStatus);
@@ -27,7 +34,13 @@ if (typeof GoMo !== 'object') GoMo = {};
     });
   }
   GoMo.join = function(username) {
-    GoMo.request({'action': 'join', 'username': username});
+    GoMo.request(
+        {'action': 'join', 'username': username},
+        function(data) {
+          GoMo.player_id = data.players.length - 1
+          GoMo.on_success(data);
+        }
+        );
   }
   GoMo.startGame = function() {
     GoMo.request({'action': 'startGame'});
@@ -37,5 +50,10 @@ if (typeof GoMo !== 'object') GoMo = {};
   }
   GoMo.do_turn = function(x, y) {
     GoMo.request({'x': x, 'y': y});
+  }
+  GoMo.getCurrentPlayer = function() {
+    return GoMo.last_data.players[
+      GoMo.last_data.turn_counter % GoMo.last_data.players.length
+      ];
   }
 }());

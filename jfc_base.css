@@ -13,6 +13,10 @@ div, header, footer {
   margin-bottom: 2%;
 }
 
+.template {
+  display: none;
+}
+
 /* header */
 header {
   margin: 0 0 2% 0;
@@ -34,6 +38,10 @@ h1 {
   padding: 1%;
 }
 
+#board.active td {
+  cursor: pointer;
+}
+
 #board table {
   width: 100%;
   height: 100%;
@@ -44,6 +52,7 @@ td {
   height: 5%;
   background-color: #666;
   border-radius: 5px;
+  cursor: progress;
 }
 
 .color_0 {
@@ -77,6 +86,12 @@ td {
 }
 .player.active {
   background-color: #999;
+}
+.player .me {
+  display: none;
+}
+.player.me .me{
+  display: inline;
 }
 
 /* cards */
