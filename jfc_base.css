@@ -39,10 +39,30 @@ h1 {
   height: 100%;
 }
 
-#board td {
+td {
   width: 5%;
   height: 5%;
   background-color: #666;
+  border-radius: 5px;
+}
+
+.color_0 {
+  background-color: #B20000;
+}
+.color_1 {
+  background-color: #194719;
+}
+.color_2 {
+  background-color: #09F;
+}
+.color_3 {
+  background-color: #E86C19;
+}
+.color_4 {
+  background-color: #5C00E6;
+}
+.color_5 {
+  background-color: #C0C;
 }
 
 /* player names */
