@@ -17,19 +17,19 @@ class JFC:
     self.reset_game()
   def add_player(self, name):
     if self.state != GameState.LOBBY: return 'Game already started.'
-    player = {'name': name, 'cards': [], 'id': len(self.players)+1}
+    player = {'name': name, 'cards': [], 'id': len(self.players)}
     self.draw_cards(player)
     self.players.append(player)
     self.log_event(LogAction.PLAYER_JOIN, name)
   def get_player(self, player_id):
-    return self.players[player_id-1]
+    return self.players[player_id]
 
   def do_turn(self, data):
     if self.state != GameState.RUNNING: return 'Game not started'
     try:
       x = int(data['x'])
       y = int(data['y'])
-      player = self.get_player(self.turn_counter % len(self.players) + 1)
+      player = self.get_player(self.turn_counter % len(self.players))
       field = self.board[y][x]
       #check if player has enough cards
       c = Counter(player['cards'])
@@ -66,7 +66,7 @@ class JFC:
   def check_finish_helper(self, x, y, dx, dy):
     player = self.board[y][x]['player_id']
     for i in range(1, 4):
-      if self.board[y+i*dy][x+i*dx]['player_id'] == 0 or self.board[y+i*dy][x+i*dx]['player_id'] != player: return False
+      if self.board[y+i*dy][x+i*dx]['player_id'] == -1 or self.board[y+i*dy][x+i*dx]['player_id'] != player: return False
     return True
   
   def start_game(self):
@@ -81,7 +81,7 @@ class JFC:
     board_raw = [[0,1,2,3,4,5], [4,3,0,5,2,1], [2,5,4,1,0,3], [1,0,3,2,5,4], [5,2,1,4,3,0], [3,4,5,0,1,2]]
     for y in range(6):
       for x in range(6):
-        self.board[y].append({'color': board_raw[y][x], 'player_id': 0, 'level': 0})
+        self.board[y].append({'color': board_raw[y][x], 'player_id': -1, 'level': 0})
     self.state = GameState.LOBBY
     self.log_event(LogAction.GAME_RESET)
   def log_event(self, action, detail=None):
