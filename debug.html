@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>TicTacToe</title>
+	<link rel="stylesheet" href="jfc.css" />
+	<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script src="json2.js"></script>
+	<script src="jfc.js"></script>
+</head>
+<body>
+<p id="status"></p>
+<p id="cards"></p>
+<table id="field">
+	<tr y="0">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+	<tr y="1">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+	<tr y="2">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+	<tr y="3">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+	<tr y="4">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+	<tr y="5">
+		<td x="0"></td>
+		<td x="1"></td> 
+		<td x="2"></td> 
+		<td x="3"></td> 
+		<td x="4"></td> 
+		<td x="5"></td> 
+	</tr>
+</table>
+
+<label for="username">Username:</label><input id="username" type="text" /><input type="submit" text="Join" onclick="javascript:joinGame()" />
+<br />
+<input type="submit" value="Start Game" onclick="javascript:startGame()" />
+
+<h2>Sample State</h2>
+<pre>
+{
+	"players": [{ # array of player objects
+		"name":"Blub", # name of the player
+		"cards":[], # colorcode array representing the cards of the player
+		"id":1} # id of the player. id should be position_in_array beginning at 1. player 0 is unoccupied
+	],
+	"history":[], # history of actions in the current game (not yet implemented)
+	"board":[[{ # 6x6 array
+		# if a property isnt available use 0 as value
+		"player_id": 1, # id of player. 0 is reserved for unoccupied. so this would be PlayerA
+		"level": 1, # size of the pile. it now needs 2 cards to claim the field
+		"color": 0 # color code of the field
+	},]], 
+	"turn":6 # counts actions in the game. used to determine the next player
+}
+</pre>
+</body>
+</html>

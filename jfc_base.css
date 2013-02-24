@@ -1,0 +1,98 @@
+/* general */
+body {
+  font-family: 'Stalinist One', sans-serif;
+  margin: 0 auto;
+  padding: 0 5%;
+  max-width: 1024px;
+  background-color: #444;
+}
+
+div, header, footer {
+  background-color: #828282;
+  border-radius: 10px;
+  margin-bottom: 2%;
+}
+
+/* header */
+header {
+  margin: 0 0 2% 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+h1 {
+  margin: 0 3%;
+}
+
+/* login */
+#login {
+  display: none;
+}
+
+/* board */
+#board {
+  padding: 1%;
+}
+
+#board table {
+  width: 100%;
+  height: 100%;
+}
+
+#board td {
+  width: 5%;
+  height: 5%;
+  background-color: #666;
+}
+
+/* player names */
+#players {
+  padding: 1%;
+}
+.player {
+  overflow: hidden;
+  padding: 1%;
+  background-color: #666;
+  border: medium solid #666;
+}
+.player.active {
+  background-color: #999;
+}
+
+/* cards */
+#cards {
+  overflow: auto;
+  padding: 1%;
+}
+.card {
+  float: left;
+  width: 40%;
+  margin: 1%;
+  border: medium solid #444;
+}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+
+/* footer */
+footer {
+  padding: 1%;
+}
+
+/* orientation */
+@media all and (orientation: landscape) {
+  #board {
+    width: 70%;
+    float: left;
+  }
+  #players, #cards {
+    width: 23%;
+    float: right;
+  }
+  .card:nth-child(even) {
+    float: right;
+  }
+  footer {
+    clear: both;
+  }
+}
