@@ -66,8 +66,8 @@ h1 {
 }
 .card {
   float: left;
-  width: 40%;
   margin: 1%;
+  width: 10%;
   border: medium solid #444;
 }
 .red {background-color: red;}
@@ -88,6 +88,9 @@ footer {
   #players, #cards {
     width: 23%;
     float: right;
+  }
+  .card {
+    width: 40%;
   }
   .card:nth-child(even) {
     float: right;

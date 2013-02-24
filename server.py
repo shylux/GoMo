@@ -13,6 +13,7 @@ LogAction = enum(GAME_RESET=0, PLAYER_JOIN=1, GAME_START=2, TURN=3, GAME_END=4)
 class JFC:
   def __init__(self):
     self.log = []
+    self.result = 'success'
     self.reset_game()
   def add_player(self, name):
     if self.state != GameState.LOBBY: return 'Game already started.'
