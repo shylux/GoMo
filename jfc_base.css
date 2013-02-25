@@ -47,7 +47,7 @@ h1 {
   height: 100%;
 }
 
-td {
+#board td {
   width: 5%;
   height: 5%;
   background-color: #666;
