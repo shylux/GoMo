@@ -25,6 +25,9 @@ function updateGameState(data) {
     $('#board').removeClass('active');
   }
 
+  // check if game is running
+  $('#start').css('display', (data.state == 0) ? 'block' : 'none');
+
   // list players
   $('.player:not(.template, .join)').remove();
   for (i=0; i < data.players.length; i++) {
