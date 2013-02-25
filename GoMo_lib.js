@@ -49,7 +49,7 @@ if (typeof GoMo !== 'object') GoMo = {};
     GoMo.request({});
   }
   GoMo.do_turn = function(x, y) {
-    GoMo.request({'x': x, 'y': y});
+    GoMo.request({'action': 'do_turn', 'x': x, 'y': y});
   }
   GoMo.getCurrentPlayer = function() {
     return GoMo.last_data.players[

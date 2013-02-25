@@ -18,6 +18,7 @@ function updateGameState(data) {
       domfield.html('p: '+datafield.player_id+'<br/>lv: '+datafield.level);
     }
   }
+  // check if its your turn
   if (typeof currPlayer !== 'undefined' && GoMo.player_id == currPlayer.id) {
     $('#board').addClass('active');
   } else {
@@ -58,6 +59,12 @@ $(window).ready(function() {
     });
   });
   GoMo.connect(updateGameState, showError);
+  // add click handler for board
+  $('#board td').bind('click', function() {
+    if ($('#board').hasClass('active')) {
+      GoMo.do_turn($(this).attr('x'), $(this).parent().attr('y'));
+    }
+  });
 });
 
 function join() {
