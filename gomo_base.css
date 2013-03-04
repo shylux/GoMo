@@ -115,7 +115,7 @@ td {
     width: 70%;
     float: left;
   }
-  #players, #start, #cards {
+  #players, #start, #reset, #cards {
     width: 23%;
     float: right;
   }

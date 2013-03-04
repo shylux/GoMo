@@ -19,7 +19,7 @@ function updateGameState(data) {
     }
   }
   // check if its your turn
-  if (typeof currPlayer !== 'undefined' && GoMo.player_id == currPlayer.id) {
+  if (typeof currPlayer !== 'undefined' && GoMo.getPlayerId() == currPlayer.id) {
     $('#board').addClass('active');
   } else {
     $('#board').removeClass('active');
@@ -27,6 +27,7 @@ function updateGameState(data) {
 
   // check if game is running
   $('#start').css('display', (data.state == 0) ? 'block' : 'none');
+  $('#reset').css('display', (data.state == 1) ? 'block' : 'none');
 
   // list players
   $('.player:not(.template, .join)').remove();
@@ -34,13 +35,13 @@ function updateGameState(data) {
     var template = $('.player.template').clone().removeClass('template');
     template.find('.player_name').text(data.players[i].name);
     if (typeof currPlayer !== 'undefined' && i == currPlayer.id) template.addClass('active');
-    if (i == GoMo.player_id) template.addClass('me');
+    if (i == GoMo.getPlayerId()) template.addClass('me');
     $('.player.join').before(template);
   }
   // show cards
-  if (typeof GoMo.player_id !== 'undefined') {
-    $('.card').remove();
-    jQuery.each(data.players[GoMo.player_id].cards, function(index, value){
+  $('.card').remove();
+  if (GoMo.getPlayerId()) {
+    jQuery.each(data.players[GoMo.getPlayerId()].cards, function(index, value){
       $('#cards').append(
         $('<div></div>').addClass('card').addClass('color_'+value)
         );
