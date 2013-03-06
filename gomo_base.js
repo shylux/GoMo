@@ -2,8 +2,7 @@ $(window).ready(resize);
 $(window).resize(resize);
 
 function resize() {
-  var div = $('#board');
-  div.css('height', div.width());
+  $('#board').css('height', $('#board').width());
   $('.card').css('height', $('.card').width()*1.5);
 }
 
@@ -13,7 +12,7 @@ function updateGameState(data) {
 	for (x=0; x < data.board.length ; x++) {
 		for (y=0; y < data.board.length; y++) {
 			var datafield = data.board[y][x];
-      var domfield = $('#board').find('[y="'+y+'"]').find('[x="'+x+'"]');
+      var domfield = $('#board').find('[data-y="'+y+'"]').find('[data-x="'+x+'"]');
       domfield.addClass('color_' + datafield.color);
       domfield.html('p: '+datafield.player_id+'<br/>lv: '+datafield.level);
     }
@@ -57,16 +56,16 @@ function showError(error_string) {
 $(window).ready(function() {
   // add x and y coordinates to tr and td to identify them later on
   $('#board tr').each(function(y, value) {
-    $(this).attr('y', y);
+    $(this).attr('data-y', y);
     $(this).find('td').each(function(x, value) {
-      $(this).attr('x', x);
+      $(this).attr('data-x', x);
     });
   });
   GoMo.connect(updateGameState, showError);
   // add click handler for board
   $('#board td').bind('click', function() {
     if ($('#board').hasClass('active')) {
-      GoMo.do_turn($(this).attr('x'), $(this).parent().attr('y'));
+      GoMo.do_turn($(this).attr('data-x'), $(this).parent().attr('data-y'));
     }
   });
 });
