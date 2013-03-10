@@ -49,8 +49,7 @@ function updateGameState(data) {
   }
 }
 function showError(error_string) {
-  //TODO create nice error window
-  $('h1').text(error_string);
+  $('#error').text(error_string).slideDown().delay(500).slideUp();
 }
 
 $(window).ready(function() {

@@ -24,7 +24,7 @@ if (typeof GoMo !== 'object') GoMo = {};
       type: 'GET',
       success: function(data, textStatus, jqXHR) {
         if (!data.result) {GoMo.on_error(textStatus); return;}
-        if (data.result != 'success') {GoMo.on_error(data.result); return;}
+        if (data.result != 'success') {GoMo.on_error(data.message); return;}
         GoMo.last_data = data;
         if (data.you == undefined) localStorage.clear();
         if (typeof onsuccess !== 'undefined') {
